@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: anvisero
+      changes:
+        - sqlFile:
+            path: /migrations/db-changelog-1.0.sql
+      rollback:
+        - sql: DROP TABLE IF EXISTS apps CASCADE
+        - sql: DROP TABLE IF EXISTS hits CASCADE
