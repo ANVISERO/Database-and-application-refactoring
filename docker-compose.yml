@@ -1,3 +1,4 @@
+version: '3.1'
 services:
   stats-server:
     build: ./stats-service/stats-server
@@ -22,3 +23,29 @@ services:
       - POSTGRES_DB=stat
       - POSTGRES_USER=stat
       - POSTGRES_PASSWORD=stat
+
+  ewm-service:
+    build: ./ewm-service
+    container_name: ewm-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_PORT=8080
+      - DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+      - DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/ewm
+      - DATASOURCE_USERNAME=ewm
+      - DATASOURCE_PASSWORD=ewm
+      - CLIENT_URL=http://stats-server:9090
+    depends_on:
+      - ewm-db
+      - stats-server
+
+  ewm-db:
+    image: postgres:16.1
+    container_name: ewm-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=ewm
+      - POSTGRES_USER=ewm
+      - POSTGRES_PASSWORD=ewm
