@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: anvisero
+      changes:
+        - sqlFile:
+            path: migrations/db-changelog-main-1.0.sql
+      rollback:
+        - sql: DROP TABLE IF EXISTS users CASCADE
+        - sql: DROP TABLE IF EXISTS categories CASCADE
+        - sql: DROP TABLE IF EXISTS events CASCADE
+        - sql: DROP TABLE IF EXISTS requests CASCADE
+        - sql: DROP TABLE IF EXISTS compilations CASCADE
+        - sql: DROP TABLE IF EXISTS compilations_events CASCADE
+        - sql: DROP TABLE IF EXISTS comments CASCADE
+        - sql: DROP INDEX IF EXISTS events_user_id_idx;
+        - sql: DROP INDEX IF EXISTS events_category_id_idx;
+        - sql: DROP INDEX IF EXISTS requests_event_id_idx;
+        - sql: DROP INDEX IF EXISTS requests_user_id_idx;
+        - sql: DROP INDEX IF EXISTS comments_user_id_idx;
+        - sql: DROP INDEX IF EXISTS comments_event_id_idx;

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class HitDto {
+public final class HitDto {
     @NotBlank(message = "App field should not be empty")
     private String app;
 
