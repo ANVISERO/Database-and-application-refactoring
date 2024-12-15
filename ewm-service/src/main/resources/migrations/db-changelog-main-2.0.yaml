@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: anvisero
+      changes:
+        - sqlFile:
+            path: migrations/db-changelog-main-2.0.sql
+      rollback:
+        - sql: DROP TABLE IF EXISTS comments CASCADE
+        - sql: DROP INDEX IF EXISTS comments_user_id_idx;
+        - sql: DROP INDEX IF EXISTS comments_event_id_idx;
